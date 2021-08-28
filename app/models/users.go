@@ -58,3 +58,13 @@ func (u *User) UpdateUser() (err error) {
 	}
 	return err
 }
+
+// 先頭は関数内で宣言する変数の型、関数のうしろは返り値の型
+func (u *User) DeleteUser() (err error) {
+	cmd := `delete from users where id = ?`
+	_, err = Db.Exec(cmd, u.ID)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	return err
+}
