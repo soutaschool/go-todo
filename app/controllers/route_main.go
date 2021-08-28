@@ -1,11 +1,15 @@
 package controllers
 
 import (
+	"html/template"
+	"log"
 	"net/http"
-	"text/template"
 )
 
-func Top(w http.ResponseWriter, r *http.Request) {
-	t, _ := template.ParseFiles("github.com/soutaschool/todo-app/views/pages/index.tsx")
+func top(w http.ResponseWriter, r *http.Request) {
+	t, err := template.ParseFiles("app/views/templates/top.html")
+	if err != nil {
+		log.Fatalln(err)
+	}
 	t.Execute(w, nil)
 }
